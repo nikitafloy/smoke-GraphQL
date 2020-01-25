@@ -77,6 +77,9 @@ module.exports = {
             if (!validator.isInt(count.toString(), {min: 1})) return 'Ошибка: Неверное количество'
             const tobacco = await Tobacco.findOne({ name })
             if (tobacco) {
+                if (tobacco.count - count < 0) {
+                    return 'Вы не можете удалить больше табака, чем есть в наличии'
+                }
                 tobacco.count -= +count
                 await tobacco.save()
                 return 'Убрали количество табака ' + name + ' - ' + count + '. Всего осталось - ' + tobacco.count
