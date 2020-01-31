@@ -1,11 +1,10 @@
-const buttons = document.querySelectorAll("button")
 const headers = {
     'Content-Type': 'application/json',
     'Accept': 'application/json'
 }
 
+const buttons = document.querySelectorAll("button")
 for (i=0;i < buttons.length;i++){buttons[i].addEventListener("click", btnHandler)}
-
 function update(){
     fetch('/graphql', {
         method: 'post',
